@@ -128,7 +128,7 @@ Analysen visar att livsstilsfaktorer och tidigare historik har stor påverkan p�
 ## Förbätringar
 
 - Det är möjligt att effekten av vissa variabler, exempelvis BMI, skiljer sig   mellan rökare och icke-rökare, vilket skulle kunna undersökas
-- Man skulle kunna ta bort onödiga/icke-signifikanta variabler
+- Man skulle kunna ta bort onödiga variabler
 
 ## Självreflektion
 
