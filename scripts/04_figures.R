@@ -8,7 +8,7 @@ p_charges <- ggplot(data_ready, aes(x = charges)) +
     y = "Antal"
   )
 
-print(p_charges)
+p_charges
 
 #Ålder vs kostnad och kronisk sjukdom
 
@@ -24,7 +24,7 @@ p_charges_age <- ggplot(data_ready, aes(x = age, y = charges, color = chronic_co
     shape = "Kön"
   )
 
-print(p_charges_age)
+p_charges_age
 
 #BMI vs kostnad och rökare
 
@@ -38,7 +38,7 @@ p_bmi <- ggplot(data_ready, aes(x = bmi, y = charges, color = smoker)) +
     color = "Rökare"
   )
 
-print(p_bmi)
+p_bmi
 
 #Historik
 
@@ -50,9 +50,9 @@ p_risk <- ggplot(data_ready, aes(x = high_risk, y = charges)) +
     y = "Kostnad"
   )
 
-print(p_risk)
+p_risk
 
-ggsave("figures/bmi.png", p_bmi, width = 8, height = 5)
-ggsave("figures/charges.png", p_charges, width = 8, height = 5)
-ggsave("figures/charges_age.png", p_charges_age, width = 8, height = 5)
-ggsave("figures/risk.png", p_risk, width = 8, height = 5)
+#ggsave("figures/bmi.png", p_bmi, width = 8, height = 5)
+#ggsave("figures/charges.png", p_charges, width = 8, height = 5)
+#ggsave("figures/charges_age.png", p_charges_age, width = 8, height = 5)
+#ggsave("figures/risk.png", p_risk, width = 8, height = 5)

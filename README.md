@@ -1,7 +1,6 @@
 # Individuell inlämningsuppgift – R-programmering för dataanalys
-## Case: Försäkringskostnader – analysera vilka faktorer som hänger ihop med kostnader
 
-Det här projektet analyserar vilka faktorer hänger ihop med försäkringskostnader.
+Försäkringskostnader - Det här projektet analyserar vilka faktorer hänger ihop med försäkringskostnader.
 
 ## Filer
 

@@ -1,0 +1,143 @@
+---
+title: "Rapport"
+format: html
+---
+
+# Analys av försäkringskostnader
+
+```{r}
+library(tidyverse)
+data <- read_csv("insurance_costs.csv")
+source("scripts/02_prepare_data.R")
+source("scripts/03_analysis.R")
+source("scripts/04_figures.R")
+source("scripts/05_regression.R")
+```
+
+## Introduktion
+
+I den här rapporten analyseras vilka faktorer hänger ihop med försäkringskostnader. Syftet med analysen är att undersöka vilka faktorer som påverkar individers försäkringskostnader (charges) samt att bygga en regressionsmodell som kan förklara variationen i dessa kostnader.
+
+## Metod
+
+Analysen genomfördes i R. Datasetet innehåller både numeriska och kategoriska variabler såsom ålder, BMI, rökning och tidigare skadehistorik.
+
+Datat städades genom att:
+
+-   saknade numeriska värden ersattes med median
+-   saknade kategoriska värden ersattes med "unknown"
+-   kategoriska variabler standardiserades och konverterades till faktorer
+-   nya variabler (risk_score, high_risk) skapades baserat på tidigare olyckor och claims
+
+Därefter genomfördes:
+
+-   beskrivande statistik
+-   visualiseringar
+-   en regressionsmodell
+
+```{r}
+print(glimpse(data_ready))
+```
+
+## Resultat
+
+### 1. Fördelning av försäkringskostnader
+
+```{r}
+print(p_charges)
+```
+
+```{r}
+print(charges_summary)
+```
+
+Fördelningen av försäkringskostnader är skev, vilket innebär att de flesta individer har relativt låga till medelhöga kostnader, medan ett mindre antal har mycket höga kostnader. Detta tyder på att det finns grupper med betydligt högre risk eller vårdbehov.
+
+### 2. Ålder och kronisk sjukdom
+
+```{r}
+print(p_charges_age)
+```
+Figuren visar ett positivt samband mellan ålder och försäkringskostnader. Äldre individer tenderar att ha högre kostnader. Personer med kronisk sjukdom ligger generellt på en högre kostnadsnivå än de utan. Skillnaderna verkar finnas i båda könen, vilket tyder på att både ålder och kronisk sjukdom är viktiga faktorer.
+
+### 3. BMI och rökning
+
+```{r}
+print(p_bmi)
+```
+
+Det finns ett positivt samband mellan BMI och försäkringskostnader. Sambandet är särskilt starkt för rökare, som generellt har betydligt högre kostnader än icke-rökare vid samma BMI-nivå. Detta tyder på att rökning är en mycket viktig faktor och kan förstärka effekten av andra riskfaktorer.
+
+### 4. Historik och risknivå (t-test)
+
+```{r}
+print(risk_test)
+```
+
+För att undersöka hur tidigare olyckor och claims påverkar kostnader delades individerna in i grupperna high_risk = yes och high_risk = no.
+
+En Welch Two Sample t-test visade att hög-risk individer har signifikant högre försäkringskostnader än låg-risk individer:
+
+-   Medelvärde låg-risk: 9 693 kr
+-   Medelvärde hög-risk: 13 092 kr
+-   Skillnad: cirka 3 400 kr
+
+Eftersom p \< 0,05 kan nollhypotesen om lika medelvärden förkastas, vilket visar att skillnaden är statistiskt signifikant.
+
+```{r}
+print(p_risk)
+```
+
+Boxploten visar att individer med hög risk (baserat på tidigare olyckor och claims) har högre median- och spridning i kostnader jämfört med låg-risk, vilket stärker t-testets resultat. Detta tyder på att tidigare historik är en viktig indikator för framtida kostnader.
+
+## Regressionsanalys
+
+```{r}
+print(summary(model1))
+```
+```{r}
+print(summary(model2))
+```
+
+Modell 2 har en avsevärt högre förklaringsgrad (R² = 0.75) jämfört med modell 1 (R² = 0.54), vilket innebär att den förklarar en större del av variationen i försäkringskostnader. Den lägre residualvariansen tyder också på en bättre anpassning till datat.
+
+Resultaten visar att rökning har den starkaste effekten och ökar kostnaderna med cirka 7400 enheter. Även kroniska sjukdomar och risk_score har mycket starka och signifikanta effekter. Lägre motionsnivå är kopplad till högre kostnader, vilket är rimligt ur ett hälsoperspektiv. Ålder och BMI har också stabila och signifikanta effekter i båda modellerna. Däremot är variabler som kön, region och antal barn inte statistiskt signifikanta, vilket tyder på att deras påverkan är begränsad i denna modell.
+
+
+## Slutsatser
+
+De viktigaste faktorerna som påverkar kostnader verkar vara:
+
+-   rökning
+-   BMI
+-   kronisk sjukdom
+-   ålder
+-   tidigare skadehistorik (risk_score = prior_accidents + prior_claims)
+
+Resultaten är rimliga eftersom dessa faktorer ofta är kopplade till hälsorisker och därmed vårdkostnader.
+
+Analysen visar att livsstilsfaktorer och tidigare historik har stor påverkan på försäkringskostnader. Modellen ger en relativt god förklaring men kan förbättras ytterligare.
+
+## Begränsningar
+
+-   modellen antar linjära samband
+-   möjliga interaktioner mellan variabler undersöktes inte
+-   datasetet kan innehålla fel eller bias
+-   vissa viktiga faktorer (t.ex. inkomst eller genetik) saknas
+
+## Förbätringar
+
+- Det är möjligt att effekten av vissa variabler, exempelvis BMI, skiljer sig   mellan rökare och icke-rökare, vilket skulle kunna undersökas
+- Man skulle kunna ta bort onödiga/icke-signifikanta variabler
+
+## Självreflektion
+
+Jag tycker att jag lyckades bra med att strukturera analysen och genomföra datastädning på ett systematiskt sätt. Regressionsanalysen fungerade bra och gav rimliga resultat.
+
+Det svåraste var att välja rätt variabler och tolka resultaten korrekt.
+
+Jag bedömer att arbetet motsvarar betyget VG eftersom jag har:
+
+-   genomfört hela analysprocessen
+-   byggt och tolkat två regressionsmodeller (fördjupad regressionsanalys)
+-   motiverat val och diskuterat begränsningar och förbätringar

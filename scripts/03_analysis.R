@@ -13,14 +13,14 @@ charges_summary <- data_ready %>%
     max_charges = max(charges, na.rm = TRUE),
   )
 
-print(charges_summary)
+charges_summary
 
 
 # T-test på historik
 
 risk_test <- t.test(charges ~ high_risk, data = data_ready)
 
-print(risk_test)
-print(risk_test$p.value)
-print(risk_test$conf.int)
-print(risk_test$estimate)
+risk_test
+risk_test$p.value
+risk_test$conf.int
+risk_test$estimate

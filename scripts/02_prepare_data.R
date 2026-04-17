@@ -1,21 +1,21 @@
 # undersök datasetets storlek och struktur
 
-print(head(data))
+head(data)
 
-print(glimpse(data))
+glimpse(data)
 
-print(dim(data)) # antal radar och kolumner
+dim(data) # antal radar och kolumner
 
-print(summary(data))
+summary(data)
 
 # variabeltyper
-print(tibble(
+tibble(
   column = names(data),
   type = sapply(data, class)
-))
+)
 
 # saknade värden
-print(colSums(is.na(data)))
+colSums(is.na(data))
 
 data %>%
   count(sex, sort = TRUE)
