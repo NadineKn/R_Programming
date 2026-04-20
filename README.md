@@ -22,3 +22,7 @@ Försäkringskostnader - Det här projektet analyserar vilka faktorer hänger ih
 
 Figurer sparas i `figures/`.
 
+## Rapport
+
+[Öppna rapporten](report.html)
+
