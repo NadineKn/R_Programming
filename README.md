@@ -8,6 +8,7 @@ Försäkringskostnader - Det här projektet analyserar vilka faktorer hänger ih
 -   `scripts/02_prepare_data.R` städar och förberedar data
 -   `scripts/03_analysis.R` gör analysen
 -   `scripts/04_figures.R` skapar och sparar figurer
+-   `scripts/05_regression.R` regressionsanalys
 -   `run_analysis.R` kör hele projektet
 
 ## Så kör du projektet
