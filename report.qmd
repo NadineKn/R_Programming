@@ -103,6 +103,17 @@ Modell 2 har en avsevärt högre förklaringsgrad (R² = 0.75) jämfört med mod
 
 Resultaten visar att rökning har den starkaste effekten och ökar kostnaderna med cirka 7400 enheter. Även kroniska sjukdomar och risk_score har mycket starka och signifikanta effekter. Lägre motionsnivå är kopplad till högre kostnader, vilket är rimligt ur ett hälsoperspektiv. Ålder och BMI har också stabila och signifikanta effekter i båda modellerna. Däremot är variabler som kön, region och antal barn inte statistiskt signifikanta, vilket tyder på att deras påverkan är begränsad i denna modell.
 
+```{r}
+print(residual_plot)
+```
+Residualplotten visar skillnaderna mellan modellerna tydligare. I modell 1 är residualerna mer utspridda, vilket tyder på att modellen har större fel i sina prediktioner och inte fångar variationen i datan lika bra.
+
+I modell 2 är residualerna mer samlade kring noll, vilket tyder på att modellen generellt ger mer träffsäkra prediktioner och en bättre anpassning till datan.
+
+Samtidigt ser vi fortfarande vissa outliers och viss spridning i båda modellerna. Det kan tyda på att det finns variation i datan som modellerna inte fångar, till exempel icke-linjära samband eller viktiga variabler som saknas.
+
+Det är också viktigt att notera att även om modell 2 ser bättre ut, bör man vara försiktig med att tolka detta som att den är “perfekt”. En mer komplex modell kan alltid minska residualerna, men det betyder inte alltid att den generaliserar bättre till nya data.
+
 
 ## Slutsatser
 
@@ -124,11 +135,12 @@ Analysen visar att livsstilsfaktorer och tidigare historik har stor påverkan p�
 -   möjliga interaktioner mellan variabler undersöktes inte
 -   datasetet kan innehålla fel eller bias
 -   vissa viktiga faktorer (t.ex. inkomst eller genetik) saknas
+-   Modell 2 ger bättre prediktion men modell 1 är enklare och mer tolkbar, vilket kan vara att föredra i vissa sammanhang.
 
 ## Förbätringar
 
-- Det är möjligt att effekten av vissa variabler, exempelvis BMI, skiljer sig   mellan rökare och icke-rökare, vilket skulle kunna undersökas
-- Man skulle kunna ta bort onödiga variabler
+- Det är möjligt att effekten av vissa variabler, exempelvis BMI, skiljer sig   mellan rökare och icke-rökare, vilket skulle kunna undersökas.
+- Trots att modell 2 har högre R² innehåller den flera icke-signifikant variabler, vilket kan tyda på att modellen är onödigt komplex. Man skulle kunna få en bättre modell genom att exkludera variabler som kön och region, vilket kan förbättra tolkbarheten utan att försämra modellen nämnvärt.
 
 ## Självreflektion
 

@@ -379,6 +379,20 @@ F-statistic: 214.4 on 15 and 1084 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>Modell 2 har en avsevärt högre förklaringsgrad (R² = 0.75) jämfört med modell 1 (R² = 0.54), vilket innebär att den förklarar en större del av variationen i försäkringskostnader. Den lägre residualvariansen tyder också på en bättre anpassning till datat.</p>
 <p>Resultaten visar att rökning har den starkaste effekten och ökar kostnaderna med cirka 7400 enheter. Även kroniska sjukdomar och risk_score har mycket starka och signifikanta effekter. Lägre motionsnivå är kopplad till högre kostnader, vilket är rimligt ur ett hälsoperspektiv. Ålder och BMI har också stabila och signifikanta effekter i båda modellerna. Däremot är variabler som kön, region och antal barn inte statistiskt signifikanta, vilket tyder på att deras påverkan är begränsad i denna modell.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(residual_plot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Residualplotten visar skillnaderna mellan modellerna tydligare. I modell 1 är residualerna mer utspridda, vilket tyder på att modellen har större fel i sina prediktioner och inte fångar variationen i datan lika bra.</p>
+<p>I modell 2 är residualerna mer samlade kring noll, vilket tyder på att modellen generellt ger mer träffsäkra prediktioner och en bättre anpassning till datan.</p>
+<p>Samtidigt ser vi fortfarande vissa outliers och viss spridning i båda modellerna. Det kan tyda på att det finns variation i datan som modellerna inte fångar, till exempel icke-linjära samband eller viktiga variabler som saknas.</p>
+<p>Det är också viktigt att notera att även om modell 2 ser bättre ut, bör man vara försiktig med att tolka detta som att den är “perfekt”. En mer komplex modell kan alltid minska residualerna, men det betyder inte alltid att den generaliserar bättre till nya data.</p>
 </section>
 <section id="slutsatser" class="level2">
 <h2 class="anchored" data-anchor-id="slutsatser">Slutsatser</h2>
@@ -400,13 +414,14 @@ F-statistic: 214.4 on 15 and 1084 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>möjliga interaktioner mellan variabler undersöktes inte</li>
 <li>datasetet kan innehålla fel eller bias</li>
 <li>vissa viktiga faktorer (t.ex. inkomst eller genetik) saknas</li>
+<li>Modell 2 ger bättre prediktion men modell 1 är enklare och mer tolkbar, vilket kan vara att föredra i vissa sammanhang.</li>
 </ul>
 </section>
 <section id="förbätringar" class="level2">
 <h2 class="anchored" data-anchor-id="förbätringar">Förbätringar</h2>
 <ul>
-<li>Det är möjligt att effekten av vissa variabler, exempelvis BMI, skiljer sig mellan rökare och icke-rökare, vilket skulle kunna undersökas</li>
-<li>Man skulle kunna ta bort onödiga variabler</li>
+<li>Det är möjligt att effekten av vissa variabler, exempelvis BMI, skiljer sig mellan rökare och icke-rökare, vilket skulle kunna undersökas.</li>
+<li>Trots att modell 2 har högre R² innehåller den flera icke-signifikant variabler, vilket kan tyda på att modellen är onödigt komplex. Man skulle kunna få en bättre modell genom att exkludera variabler som kön och region, vilket kan förbättra tolkbarheten utan att försämra modellen nämnvärt.</li>
 </ul>
 </section>
 <section id="självreflektion" class="level2">
