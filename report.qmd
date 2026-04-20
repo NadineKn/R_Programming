@@ -88,7 +88,7 @@ Eftersom p \< 0,05 kan nollhypotesen om lika medelvärden förkastas, vilket vis
 print(p_risk)
 ```
 
-Boxploten visar att individer med hög risk (baserat på tidigare olyckor och claims) har högre median- och spridning i kostnader jämfört med låg-risk, vilket stärker t-testets resultat. Detta tyder på att tidigare historik är en viktig indikator för framtida kostnader.
+Boxplotten visar att individer med hög risk (baserat på tidigare olyckor och claims) har högre median- och spridning i kostnader jämfört med låg-risk, vilket stärker t-testets resultat. Detta tyder på att tidigare historik är en viktig indikator för framtida kostnader.
 
 ## Regressionsanalys
 
